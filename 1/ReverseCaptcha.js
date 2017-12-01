@@ -10,7 +10,6 @@ reverseCaptcha = (myNumber) => {
 	myLength = myString.length;
 
 	// check for cyclic values
-	console.log('Length; '+myLength);
 	if(myString[0] === myString[myLength-1]){
 		let beginning = parseInt(myString[0]);
 		let end = parseInt(myString[myLength-1]);
@@ -19,22 +18,20 @@ reverseCaptcha = (myNumber) => {
 		sum = parseInt(myString[0]);
 	}
 
+	// my LOOP
 	for(let i = 0; i < myLength; i++){
-		//console.log('counter: ' + i );
-		//console.log('current: ' + myString[i]);
-		//console.log('next: ' + myString[i+1]);
+		console.log('counter: ' + i );
+		console.log('current: ' + myString[i]);
+		console.log('next: ' + myString[i+1]);
 		if(myString[i] === myString[i+1]){
 			let next = myString[i+1];
-			//console.log(`${myString[i]} matches ${next}!`);
+			console.log(`${myString[i]} matches ${next}!`);
 			sum = sum + parseInt(myString[i]);
 		}
-		//console.log('---');
+		console.log('---');
 	}
-	//sum = myNumber.map((item) => item);
-	console.log("THE SUM :");
+
+	console.log("THE SUM : " + sum);
 	return sum;
 }
-console.log(reverseCaptcha(largeInt));
-//console.log(largeString);
-
-//console.log(myString);
+reverseCaptcha(largeInt);
