@@ -2,7 +2,7 @@ if(typeof require !== 'undefined') XLSX = require('xlsx');
 const workbook = XLSX.readFile('spreadsheet_v2.xlsx');
 const myData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {header:1});
 
-const corruptionChecksum = (data) => {
+const corruptionChecksumEven = (data) => {
 	let finalSum = 0;
 
 	// my LOOP
@@ -20,4 +20,4 @@ const corruptionChecksum = (data) => {
 	return finalSum;
 }
 
-console.log(corruptionChecksum(myData))
+console.log(corruptionChecksumEven(myData))
