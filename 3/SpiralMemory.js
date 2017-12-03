@@ -5,7 +5,7 @@ const printMapToConsole = (map) => {
 }
 
 const generateMap = (rows, cols) => {
-	let map = '';
+
 }
 
 // 17  16  15  14  13
