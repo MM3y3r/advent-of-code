@@ -1,32 +1,10 @@
-// type mapField = {
-// 	distanceToCenter:Function,
-// 	value: number,
-// 	x: number,
-// 	y: number,
-// }
-//
+const testNumber = 28;
+let emptyMap = '';
 
-// let map = {
-// 	'rows':{[
-// 		'x1':{
-//
-// 		}
-// 	]}
-// }
-
-class spiralField{
-		addNumber(){
-
-		}
+const printMapToConsole = (map) => {
 }
 
-const testNumber = 27;
-
-const printMap = (map) => {
-
-}
-
-const spiralMemoryGen = (number) => {
+const generateMap = (rows, cols) => {
 	let map = '';
 }
 
@@ -37,6 +15,7 @@ const spiralMemoryGen = (number) => {
 // 21  22  23---> ...
 
 const rowColCounter = (number) => {
+	// --- begins at 1 and therefore starts with one row/col ---
 	let cols = 1;
 	let rows = 1;
 	let stepLength = 1;
@@ -47,8 +26,7 @@ const rowColCounter = (number) => {
 		console.log(`current : ${i}`);
 		if(stepcounter === stepLength){
 			if(cornerTicker === true){
-				stepLength = stepLength + 1;
-				//console.log(`NEW WALK LENGTH: ${stepLength}`)
+				stepLength++;
 				rows++;
 				console.log(`--- Cols : ${cols}, Rows : ${rows} ---`);
 				cornerTicker = false;
@@ -57,13 +35,11 @@ const rowColCounter = (number) => {
 				console.log(`--- Cols : ${cols}, Rows : ${rows} ---`);
 				cornerTicker = true;
 			}
-			//console.log(`step : ${stepcounter} ... RESETTING`);
 			stepcounter = 0;
-		} else {
-			//console.log(`step : ${stepcounter}`);
 		}
 		stepcounter++;
 	}
+	console.log(`--- RETURNING ${cols} Cols and ${rows} Rows ---`);
 	return([cols,rows]);
 }
 
