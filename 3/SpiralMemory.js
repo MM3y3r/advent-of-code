@@ -1,46 +1,28 @@
-const testNumber = 28;
-let emptyMap = '';
+const R = require('ramda');
 
-const printMapToConsole = (map) => {
+const getXY = ([min, max], number) => {
+    if ( R.contains(number)(R.range(min, max)) ) {
+        const dist = distanceRange(number);
+        const sector = ~~((number - min) / (max - min) * 4);
+
+        const sideLength = (max - min) / 4;
+
+        const sectorDistance = ~~((number - min));
+
+        return dist + Math.abs(sectorDistance % sideLength - (sideLength/2 - 1));
+    } else {
+        return false;
+    }
 }
 
-const generateMap = (rows, cols) => {
+const spiralRange = n => n > 1 ? [2 + R.range(1, n).map(x => x * 8).reduce((a, b) => a + b), 2 + R.range(1, n + 1).map(x => x * 8).reduce((a, b) => a + b)] : [1, 2];
 
-}
+const findRange = n => R.last(R.range(1, ~~Math.sqrt(n)).map(spiralRange).filter(([min, max]) => min <= n))
 
-// 17  16  15  14  13
-// 18   5   4   3  12
-// 19   6   1   2  11
-// 20   7   8   9  10
-// 21  22  23---> ...
+const distanceRange = n => R.range(1, ~~Math.sqrt(n)).map(spiralRange).filter(([min, max]) => min <= n).length;
 
-const rowColCounter = (number) => {
-	// --- begins at 1 and therefore starts with one row/col ---
-	let cols = 1;
-	let rows = 1;
-	let stepLength = 1;
-	let cornerTicker = false;
-	let stepcounter = 0;
+const n = 361527;
 
-	for(let i = 1; i <= number; i++){
-		console.log(`current : ${i}`);
-		if(stepcounter === stepLength){
-			if(cornerTicker === true){
-				stepLength++;
-				rows++;
-				console.log(`--- Cols : ${cols}, Rows : ${rows} ---`);
-				cornerTicker = false;
-			} else {
-				cols++;
-				console.log(`--- Cols : ${cols}, Rows : ${rows} ---`);
-				cornerTicker = true;
-			}
-			stepcounter = 0;
-		}
-		stepcounter++;
-	}
-	console.log(`--- RETURNING ${cols} Cols and ${rows} Rows ---`);
-	return([cols,rows]);
-}
+const r = findRange(n);
 
-rowColCounter(testNumber);
+console.log(getXY(r, n));
